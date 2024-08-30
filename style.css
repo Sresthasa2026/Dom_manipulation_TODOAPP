@@ -1,41 +1,92 @@
-:root{
-    --body-background:#f4f4f9;
-    --btn-primary:#5cabff;
+:root {
+    --body-background: #f4f4f9;
+    --btn-primary: #5cabff;
 }
-* {
-    box-sizing:border-box;
-}
-body{
-    margin:0;
-    padding:0;
-    background-color:var(--body-background);
 
+* {
+    box-sizing: border-box;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://play-lh.googleusercontent.com/DiVW2jdka_pYVq_LGAXdIJhHb4ELPzMm2gTFpRzu6WsuVNoKuVUvKQzfhXCOwNByUPY=w832-h470-rw");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: backgroundAnimation 10s infinite alternate ease-in-out;
+}
+
 .container {
     background-color: white;
-    max-width:600px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 20px auto;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding:20px;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
 }
-h1{
+
+h1 {
     text-align: center;
-
+    transform: scale(0);
+    animation: scaleUp 0.5s ease-out forwards 1s;
 }
-#todoInput{
-width: 75%;
-padding: 10px;
-margin-right: 10px;
-border: 2px solid #14a5c5;
-border-radius: 8px;
 
+#todoInput {
+    width: 75%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #14a5c5;
+    border-radius: 8px;
+    opacity: 0;
+    animation: slideIn 0.8s ease-in-out forwards 1.5s;
 }
-#addTodo{
+
+#addTodo {
     padding: 10px 20px;
     background-color: var(--btn-primary);
     border: none;
     border-radius: 5px;
-    color:white;
-    cursor:pointer;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    animation: slideIn 0.8s ease-in-out forwards 1.8s;
+}
+ul {
+   list-style-type: none;
+   padding: 0;
+}
+li{
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+li:hover{
+    background-color: aliceblue;
+}
+li:last-child{
+    border-bottom: none;
+}
+@keyframes backgroundAnimation {
+    0% { filter: brightness(100%); }
+    100% { filter: brightness(80%); }
+}
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }

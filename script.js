@@ -11,9 +11,17 @@ function addTodoToLocalStorage(todoText) {
     localStorage.setItem("todos", JSON.stringify(todos)); // Convert to JSON string
 }
 
+function appendTodoInHtml(todoText) {
+    const todoList = document.getElementById("todoList");
+    const todo = document.createElement("li");
+    todo.textContent = todoText;
+    todoList.appendChild(todo);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const todoInput = document.getElementById("todoInput");
     const submitButton = document.getElementById("addTodo");
+    const todoList = document.getElementById("todoList");
 
     submitButton.addEventListener("click", (event) => {
         const todoText = todoInput.value.trim(); // Trim the input to remove leading/trailing spaces
@@ -21,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Please write something for the todo");
         } else {
             addTodoToLocalStorage(todoText);
+            appendTodoInHtml(todoText); // Append the new todo to the list
             todoInput.value = ""; // Clear the input after adding
         }
     });
@@ -31,5 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(todoText);
     });
 
-    loadTodos();
+    const todoss = loadTodos();
+    todoss.todoList.forEach((todoText) => {
+        const newTodoItem = document.createElement("li");
+        newTodoItem.textContent = todoText; // Corrected to use todoText
+        todoList.appendChild(newTodoItem);
+    });
+
 });
